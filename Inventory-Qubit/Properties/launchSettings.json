@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Inventory-Qubit (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Inventory-Qubit (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
