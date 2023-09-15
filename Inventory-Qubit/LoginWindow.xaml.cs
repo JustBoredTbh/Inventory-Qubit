@@ -34,7 +34,7 @@ namespace Inventory_Qubit
         string Username;
         string password;
         public string ConnectionString;
-        public static string Directory = "/InternalData/UserData.iqs";
+        public static string Directory = @"UserData.iqs";
         public static string key = "e3dfd3g98a4e41332e5gfs50xsb219da";
 
         public LoginWindow()

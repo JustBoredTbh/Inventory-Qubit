@@ -54,7 +54,7 @@ namespace Inventory_Qubit
             base.OnLaunched(args);
             if (AesOperation.ReadFromFile(LoginWindow.Directory) != "false")
             {
-                var ConnectionString = AesOperation.ReadFromFile("/InternalData/UserData.iqs");
+                var ConnectionString = AesOperation.ReadFromFile(LoginWindow.Directory);
                 if (ConnectionString != null)
                 {
                     if (DbOperations.ConnectToDb(ConnectionString) == true)

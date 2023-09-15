@@ -7,6 +7,7 @@ using System.IO;
 using static System.Console;
 using System.Security.Cryptography;
 using Microsoft.UI.Xaml.Shapes;
+using System.Windows.Forms;
 
 namespace Inventory_Qubit
 {
@@ -68,14 +69,13 @@ namespace Inventory_Qubit
         {
             string path = @$"{directory}";
             string contents = content;
-
-            File.WriteAllText(path, contents);
+            File.WriteAllText(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, directory), contents);
         }
         public static string ReadFromFile(string directory)
         {
-            if (Directory.Exists(directory))
+            if (File.Exists(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, directory)))
             {
-                var connectionString = File.ReadAllText(directory);
+                var connectionString = File.ReadAllText(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, directory));
                 connectionString = DecryptString(LoginWindow.key, connectionString);
                 return connectionString;
             }

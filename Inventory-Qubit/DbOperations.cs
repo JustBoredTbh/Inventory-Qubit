@@ -32,7 +32,7 @@ namespace Inventory_Qubit
         public static string GetCurrentUserRole()
         {
             // SQL query to get current user role
-            string query = "SELECT current_user;";
+            string query = "SELECT current_role;";
             using (NpgsqlCommand command = new NpgsqlCommand(query, con))
             {
                 // Execute the query and retrieve the result
