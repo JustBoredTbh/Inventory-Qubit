@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Inventory_Qubit
 {
@@ -33,6 +34,7 @@ namespace Inventory_Qubit
         {
             // SQL query to get current user role
             string query = "SELECT current_role;";
+
             using (NpgsqlCommand command = new NpgsqlCommand(query, con))
             {
                 // Execute the query and retrieve the result
@@ -40,13 +42,31 @@ namespace Inventory_Qubit
 
                 if (!string.IsNullOrEmpty(userRole))
                 {
-                    return userRole;
+                   
+                    if (checkUserStatus(userRole))
+                    {
+                        string userIsAdmin = "Admin";
+                        return userIsAdmin;
+                    }
+                    else
+                    {
+                        return "Branch";
+                    }
                 }
                 else
                 {
                     return "noRoleAttached";
                 }
             }
+        }
+
+        static bool checkUserStatus(string userRole)
+        {
+            string queryUserStatus = "SELECT usesuper FROM pg_user WHERE usename = @username";
+            using var queryUserStatusCommand = new NpgsqlCommand(queryUserStatus, con);
+            queryUserStatusCommand.Parameters.AddWithValue("username", userRole);
+            bool isSuperUser = (bool)queryUserStatusCommand.ExecuteScalar();
+            return isSuperUser;
         }
     }
 }

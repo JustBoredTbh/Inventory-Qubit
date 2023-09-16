@@ -162,7 +162,8 @@
                         IsPaneToggleButtonVisible="False"
                         Grid.Row="1"
                         ItemInvoked="NavView_ItemInvoked"
-                        Loaded="AdminNav_Loaded">
+                        Loaded="AdminNav_Loaded"
+                        IsSettingsVisible="False">
         <NavigationView.MenuItems>
             <NavigationViewItem Icon="DockLeft"
                                 Tag="OverviewPage"
